@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>tarea clase 4 mod 3</title>
+</head>
+<body>
+	<h1>llamar otra pagina con Async</h1>
+	<p id="demo"></p>
+
+	<script type="text/javascript">
+		
+		/*nction ver(){
+			return llamar(){
+				setTimeout(()=>{
+					document.getElementById('demo').innerHTML=ver();
+				},3000);
+			};
+		}*/
+		async function llamar(){
+			let promesa=new Promise(function(resolve){
+				let req=new XMLHttpRequest();
+				req.open('GET','otra.html');
+				req.onload=function(){
+					if(req.status==200){
+						resolve(req.response);
+					}else{
+						resolve("ups!!! pagina no encontrada");
+					}
+				};
+				req.send();
+			});
+			document.getElementById('demo').innerHTML=await promesa;
+		};
+		llamar();
+	</script>
+
+</body>
+</html>
