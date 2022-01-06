@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>tarea clase 2 mod 3</title>
+</head>
+<body>
+	<h1>tarea clase 2 mod 3</h1>
+
+	<h2>CALCULAR IVA</h2>
+	
+		ingrese monto:<input type="text" name="v1" id="v1"><br>
+		<button onclick="calcular();">calcular</button>
+	<p id="res">
+	</p>
+	<h2>CALCULOS DEL RADIO</h2>
+	
+		ingrese radio:<input type="text" name="v2" id="v2"><br>
+		<button onclick="calcular2();">calcular</button><br>
+	<p id="dia"></p>
+	<p id="per"></p>
+	<p id="are"></p>
+	<script type="text/javascript">
+		class valor{
+			constructor(v1){
+				this.valor1=v1;		
+			}
+			iva(){
+				let iv=parseInt(this.valor1);
+				return iv*0.19;
+				}
+			diametro(){
+				let diam=parseInt(this.valor1);
+				return 2*diam;
+			}
+			perimetro(){
+				let perim=parseInt(this.valor1);
+				return 2*perim*Math.PI;
+			}
+			area(){
+				let ar=parseInt(this.valor1);
+				return Math.PI*ar*ar;
+			}
+		}
+		function calcular(){
+			let v1=document.getElementById('v1').value;
+			let ivv=new valor(v1);
+			let res=ivv.iva();
+			document.getElementById('res').innerHTML="iva a pagar: $"+res.toFixed();
+			document.getElementById('v1').value="";
+		}
+		function calcular2(){
+			let v2=document.getElementById('v2').value;
+			let vv2=new valor(v2);
+			let res2=vv2.diametro();
+			let res3=vv2.perimetro();
+			let res4=vv2.area();
+			document.getElementById('dia').innerHTML="diametro: "+res2;
+			document.getElementById('per').innerHTML="perimetro: "+res3;
+			document.getElementById('are').innerHTML="area: "+res4;
+			document.getElementById('v2').value="";
+		}		
+	</script>
+
+</body>
+</html>
