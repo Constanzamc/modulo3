@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>tarea asincronica clase 3 mod 3</title>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="hoja de estilo">
+	<script src="http://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body style="background-color: #FA8072;">
+	<br>
+	<h1 style="text-align: center; color: #CD5C5C; font-family: cursive; width: 100;">llamando a otra pagina</h1>
+	<br>
+	<div class="d-grid">
+	<button type="button" class="btn btn-primary btn-block" onclick="ver();">ver pagina</button>
+	</div>
+
+	<p id="mostrar"></p>
+
+	<script type="text/javascript">
+		function ver(){
+			setTimeout(ver2,3000);
+		}
+		function ver2(){
+			let promesa=new Promise(function(myResolve,myReject){
+				let req=new XMLHttpRequest();
+				req.open('GET','otra2.html');
+				req.onload=function(){
+					if(req.status==200){
+						myResolve(req.response);
+					}else{
+						myReject('error, pagina no encontrada...!!!')
+					}
+				};
+				req.send();
+			});
+		
+			promesa.then(
+				function(value){
+					document.getElementById('mostrar').innerHTML=value;	
+				},
+				function(error){
+					document.getElementById('mostrar').innerHTML=error;
+				});
+		}
+	</script>
+</body>
+</html>
